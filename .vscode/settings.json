@@ -1,0 +1,9 @@
+{
+    "python.analysis.extraPaths": [
+        "/usr/local/lib/python3.10/site-packages"
+    ],
+    "python.linting.pylintEnabled": false,
+    "python.analysis.diagnosticSeverityOverrides": {
+        "reportMissingImports": "none"
+    }
+}

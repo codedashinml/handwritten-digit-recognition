@@ -1,9 +1,13 @@
 import cv2
 import numpy as np
 
-def preprocess_image(image_path):
-    img = cv2.imread(image_path, cv2.IMREAD_GRAYSCALE)
-    img = cv2.resize(img, (28, 28))          # Resize to MNIST dimensions
-    img = img.astype('float32') / 255.0      # Normalize
-    img = np.expand_dims(img, axis=-1)       # Add channel dimension (28,28,1)
-    return img
+def preprocess_image(image):
+    """Convert image to MNIST-compatible format"""
+    # Convert to grayscale if needed
+    if len(image.shape) > 2:
+        image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    
+    # Resize and normalize
+    image = cv2.resize(image, (28, 28))
+    image = image.astype('float32') / 255.0
+    return np.expand_dims(image, axis=(0, -1))  # Add batch and channel dims
